@@ -5,14 +5,16 @@ create database BookingFilmTickets
 on primary
 (
 	name = 'BookingFilmTicketsPrimary',
-	filename = 'D:\OutOfOS\LinhTinh\DatabaseProgramming\Project\Database\BookingFilmTickets.mdf',
+	--filename = N'D:\OutOfOS\LinhTinh\DatabaseProgramming\Project\Database\BookingFilmTickets.mdf',
+	filename = N'D:\BookingFilmTickets.mdf',
 	size = 100MB,
 	filegrowth = 20%
 )
 log on
 (
 	name = 'BookingFilmTickets_log',
-	filename = 'D:\OutOfOS\LinhTinh\DatabaseProgramming\Project\Database\BookingFilmTickets_log.ldf',
+	--filename = N'D:\OutOfOS\LinhTinh\DatabaseProgramming\Project\Database\BookingFilmTickets_log.ldf',
+	filename = N'D:\BookingFilmTickets_log.ldf',
 	size = 10MB,
 	filegrowth = 10%
 )
@@ -28,16 +30,20 @@ create table RapChieu(
 create table NhanVien(
 	MaNV int identity(1,1) primary key,
 	--MaNV bắt đầu từ 1, tự động tăng 1 đơn vị
+	UserNameNV nvarchar(10) unique,
+	MatKhauNV nvarchar(30) not null,
 	HoTenNV varchar(60) not null,
 	NgaySinh Date not null,
 	GioiTinh bit not null,
 	--GioiTinh mặc định 0 (false) là nữ, 1(true) là nam
-	CCCD numeric(12) unique,
+	CCCD varchar(12) unique,
 	HeSoLuong numeric(5,2),
 	DiaChi nvarchar(255),
 	MaRC int,
 	foreign key (MaRC) references RapChieu(MaRC)
 );
+alter table NhanVien
+add constraint Chk_CCCD_Length check (len(cast(CCCD as nvarchar(12)))=12);
 create table NVChamSoc(
 	MaNVCS int identity(1,1) primary key,
 	MaNV int unique,
@@ -56,17 +62,24 @@ create table NVDangTai(
 create table KhachHang(
 	MaKH int identity(1,1) primary key,
 	HoTenNV varchar(60) not null,
+	Email nvarchar(50) unique,
+	MatKhauKH nvarchar(30) not null,
 	NgaySinh Date not null,
 	GioiTinh bit not null,
-	CCCD numeric(12) unique,
+	CCCD varchar(12) unique,
 	DiaChi nvarchar(255)
 );
+alter table KhachHang
+add constraint Chk_CCCD_Length check (len(cast(CCCD as nvarchar(12)))=12);
 create table Phim(
 	MaPhim int identity(1,1) primary key,
 	TenPhim nvarchar(60) not null,
 	TheLoai nvarchar(40),
-	MaNVQL int,
-	foreign key (MaNVQL) references NVQuanLy(MaNVQL)
+	ThoiLuong smallint,
+	--Thời lượng phim đơn vị là phút
+	DaoDien varchar(20),
+	NamSanXuat smallint
+
 );
 create table PhongChieu(
 	MaPC int identity(1,1) primary key,
@@ -80,12 +93,10 @@ create table LichChieu(
 	NgayChieu Date,
 	SuatChieu Time,
 	MaPhim int,
-	MaRC int,
 	foreign key (MaPhim) references Phim(MaPhim),
-	foreign key (MaRC) references RapChieu(MaRC)
 );
 create table DoAn(
 	MaDA nvarchar(10) primary key,
 	TenDA nvarchar(40),
-	GiaDA double
+	GiaDA numeric(9)
 );
