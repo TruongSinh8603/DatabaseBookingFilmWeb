@@ -104,7 +104,8 @@ create table Ghe(
 create table DoAn(
 	MaDA nvarchar(30) primary key,
 	TenDA nvarchar(40),
-	GiaDA numeric(9)
+	GiaDA numeric(9),
+	HinhDA nvarchar(200)
 );
 create table SuKien(
 	MaSK int identity(1,1) primary key,

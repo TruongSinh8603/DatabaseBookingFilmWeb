@@ -178,14 +178,14 @@ VALUES
     ('C1', N'Thường', N'Trống', 10),
     ('C2', N'Thường', N'Trống', 10);
 
-insert into DoAn(MaDA, TenDA, GiaDA)
+insert into DoAn(MaDA, TenDA, GiaDA, HinhDA)
 values
-	('BAPTHUONG', N'Bắp Ngọt', 60000),
-	('BAPPHOMAI', N'Bắp Phô Mai', 75000),
-	('COMBOBAP2LOAI', N'Combo bắp phô mai và ngọt', 120000),
-	('NUOCCOCA', N'Nước Coca', 20000),
-	('NUOCMIRINDA', N'Nước Mirinda', 20000),
-	('COMBOBAPNUOC', N'Combo bắp thường và nước bất kỳ', 75000);
+	('BAPTHUONG', N'Bắp Ngọt', 60000, 'https://res-console.cloudinary.com/dzamheemx/media_explorer_thumbnails/a1ce1693788b7e09454d726bedaa5da9/detailed'),
+	('BAPPHOMAI', N'Bắp Phô Mai', 75000, 'https://res-console.cloudinary.com/dzamheemx/media_explorer_thumbnails/a640760c11ccb9dec2f75a3d0a438546/detailed'),
+	('COMBOBAP2LOAI', N'Combo bắp phô mai và ngọt', 120000, 'https://res-console.cloudinary.com/dzamheemx/media_explorer_thumbnails/037bb03da84b9268d3ca48af3fc9a09b/detailed'),
+	('NUOCCOCA', N'Nước Coca', 20000, 'https://res-console.cloudinary.com/dzamheemx/media_explorer_thumbnails/c22f35fe627090a06c1cc4a153c0f235/detailed'),
+	('NUOCMIRINDA', N'Nước Mirinda', 20000, 'https://res-console.cloudinary.com/dzamheemx/media_explorer_thumbnails/609865335a9c6979ed611af5f9021313/detailed'),
+	('COMBOBAPNUOC', N'Combo bắp thường và nước bất kỳ', 75000, 'https://res-console.cloudinary.com/dzamheemx/media_explorer_thumbnails/a80b4054437ef2faaa1a41636d18b909/detailed');
 
 INSERT INTO SuKien (TenSK, NgayBatDau, NgayKetThuc, MucKhuyenMai)
 VALUES 
