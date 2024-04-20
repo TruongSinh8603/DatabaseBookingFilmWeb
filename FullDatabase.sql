@@ -59,7 +59,7 @@ create table NVDangTai(
 );
 create table KhachHang(
 	MaKH int identity(1,1) primary key,
-	HoTenNV varchar(60) not null,
+	HoTenKH varchar(60) not null,
 	Email nvarchar(50) unique,
 	MatKhauKH nvarchar(100) not null,
 	NgaySinh Date not null,
