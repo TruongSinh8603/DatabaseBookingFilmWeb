@@ -30,8 +30,8 @@ create table RapChieu(
 create table NhanVien(
 	MaNV int identity(1,1) primary key,
 	--MaNV bắt đầu từ 1, tự động tăng 1 đơn vị
-	UserNameNV nvarchar(10) unique,
-	MatKhauNV nvarchar(30) not null,
+	UserNameNV nvarchar(45) unique,
+	MatKhauNV nvarchar(100) not null,
 	HoTenNV varchar(60) not null,
 	NgaySinh Date not null,
 	GioiTinh bit not null,
@@ -63,7 +63,7 @@ create table KhachHang(
 	MaKH int identity(1,1) primary key,
 	HoTenNV varchar(60) not null,
 	Email nvarchar(50) unique,
-	MatKhauKH nvarchar(30) not null,
+	MatKhauKH nvarchar(100) not null,
 	NgaySinh Date not null,
 	GioiTinh bit not null,
 	CCCD varchar(12) unique,
@@ -71,6 +71,7 @@ create table KhachHang(
 );
 alter table KhachHang
 add constraint Chk_CCCD_Length check (len(cast(CCCD as nvarchar(12)))=12);
+
 create table Phim(
 	MaPhim int identity(1,1) primary key,
 	TenPhim nvarchar(60) not null,
@@ -95,8 +96,46 @@ create table LichChieu(
 	MaPhim int,
 	foreign key (MaPhim) references Phim(MaPhim),
 );
+create table Ghe(
+	MaGhe int identity(1,1) primary key,
+	TenGhe nvarchar(4),
+	LoaiGhe nvarchar(10),
+	TinhTrangGhe nvarchar(10),
+	MaPC int,
+	foreign key (MaPC) references PhongChieu(MaPC)
+);
 create table DoAn(
 	MaDA nvarchar(10) primary key,
 	TenDA nvarchar(40),
 	GiaDA numeric(9)
+);
+create table SuKien(
+	MaSK int identity(1,1) primary key,
+	TenSK nvarchar(30),
+	NgayBatDau Date,
+	NgayKetThuc Date,
+	MucKhuyenMai Decimal(4,1)
+);
+create table Ve(
+	MaVe int identity(1,1) primary key,
+	GiaVe Decimal(9),
+	MaPhim int,
+	foreign key (MaPhim) references Phim(MaPhim),
+	MaGhe int,
+	foreign key (MaGhe) references Ghe(MaGhe),
+);
+create table DatVe(
+	MaDat int identity(1,1) primary key,
+	MaKH int,
+	foreign key (MaKH) references KhachHang(MaKH),
+	MaVe int unique,
+	foreign key (MaVe) references Ve(MaVe),
+	NgayDat Date,
+	MaDoAn nvarchar(10),
+	foreign key (MaDoAn) references DoAn(MaDA),
+	SoLuongDoAn int,
+	TongTien decimal(9),
+	MaSuKien int,
+	foreign key (MaSuKien) references SuKien(MaSK),
+	ThanhTien decimal(9)
 );
