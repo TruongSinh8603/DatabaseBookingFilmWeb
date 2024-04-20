@@ -5,16 +5,16 @@ create database BookingFilmTickets
 on primary
 (
 	name = 'BookingFilmTicketsPrimary',
-	--filename = N'D:\OutOfOS\LinhTinh\DatabaseProgramming\Project\Database\BookingFilmTickets.mdf',
-	filename = N'D:\BookingFilmTickets.mdf',
+	filename = N'D:\OutOfOS\LinhTinh\DatabaseProgramming\Project\Database\BookingFilmTickets.mdf',
+	--filename = N'D:\BookingFilmTickets.mdf',
 	size = 100MB,
 	filegrowth = 20%
 )
 log on
 (
 	name = 'BookingFilmTickets_log',
-	--filename = N'D:\OutOfOS\LinhTinh\DatabaseProgramming\Project\Database\BookingFilmTickets_log.ldf',
-	filename = N'D:\BookingFilmTickets_log.ldf',
+	filename = N'D:\OutOfOS\LinhTinh\DatabaseProgramming\Project\Database\BookingFilmTickets_log.ldf',
+	--filename = N'D:\BookingFilmTickets_log.ldf',
 	size = 10MB,
 	filegrowth = 10%
 )
@@ -32,7 +32,7 @@ create table NhanVien(
 	--MaNV bắt đầu từ 1, tự động tăng 1 đơn vị
 	UserNameNV nvarchar(45) unique,
 	MatKhauNV nvarchar(100) not null,
-	HoTenNV varchar(60) not null,
+	HoTenNV nvarchar(60) not null,
 	NgaySinh Date not null,
 	GioiTinh bit not null,
 	--GioiTinh mặc định 0 (false) là nữ, 1(true) là nam
@@ -59,7 +59,7 @@ create table NVDangTai(
 );
 create table KhachHang(
 	MaKH int identity(1,1) primary key,
-	HoTenKH varchar(60) not null,
+	HoTenKH nvarchar(60) not null,
 	Email nvarchar(50) unique,
 	MatKhauKH nvarchar(100) not null,
 	NgaySinh Date not null,
@@ -74,9 +74,9 @@ create table Phim(
 	TheLoai nvarchar(40),
 	ThoiLuong smallint,
 	--Thời lượng phim đơn vị là phút
-	DaoDien varchar(20),
+	DaoDien nvarchar(20),
 	NamSanXuat smallint,
-	HinhPhim varchar(200),
+	HinhPhim nvarchar(200),
 	MoTa nvarchar(2000)
 );
 create table PhongChieu(
