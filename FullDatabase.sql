@@ -137,9 +137,3 @@ create table DatVe(
 	ThanhTien decimal(9)
 );
 
---Thêm các ràng buộc cho database
-alter table NhanVien
-add constraint Chk_CCCDNV_Length check (len(cast(CCCD as nvarchar(12)))=12);
-
-alter table KhachHang
-add constraint Chk_CCCDKH_Length check (len(cast(CCCD as nvarchar(12)))=12);
