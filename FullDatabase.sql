@@ -77,7 +77,7 @@ create table Phim(
 	DaoDien varchar(20),
 	NamSanXuat smallint,
 	HinhPhim varchar(200),
-
+	MoTa nvarchar(2000)
 );
 create table PhongChieu(
 	MaPC int identity(1,1) primary key,
@@ -102,7 +102,7 @@ create table Ghe(
 	foreign key (MaPC) references PhongChieu(MaPC)
 );
 create table DoAn(
-	MaDA nvarchar(10) primary key,
+	MaDA nvarchar(30) primary key,
 	TenDA nvarchar(40),
 	GiaDA numeric(9)
 );
@@ -128,7 +128,7 @@ create table DatVe(
 	MaVe int unique,
 	foreign key (MaVe) references Ve(MaVe),
 	NgayDat Date,
-	MaDoAn nvarchar(10),
+	MaDoAn nvarchar(30),
 	foreign key (MaDoAn) references DoAn(MaDA),
 	SoLuongDoAn int,
 	TongTien decimal(9),
