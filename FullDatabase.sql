@@ -42,8 +42,6 @@ create table NhanVien(
 	MaRC int,
 	foreign key (MaRC) references RapChieu(MaRC)
 );
-alter table NhanVien
-add constraint Chk_CCCD_Length check (len(cast(CCCD as nvarchar(12)))=12);
 create table NVChamSoc(
 	MaNVCS int identity(1,1) primary key,
 	MaNV int unique,
@@ -69,8 +67,6 @@ create table KhachHang(
 	CCCD varchar(12) unique,
 	DiaChi nvarchar(255)
 );
-alter table KhachHang
-add constraint Chk_CCCD_Length check (len(cast(CCCD as nvarchar(12)))=12);
 
 create table Phim(
 	MaPhim int identity(1,1) primary key,
@@ -79,7 +75,8 @@ create table Phim(
 	ThoiLuong smallint,
 	--Thời lượng phim đơn vị là phút
 	DaoDien varchar(20),
-	NamSanXuat smallint
+	NamSanXuat smallint,
+	HinhPhim varchar(200),
 
 );
 create table PhongChieu(
@@ -139,3 +136,10 @@ create table DatVe(
 	foreign key (MaSuKien) references SuKien(MaSK),
 	ThanhTien decimal(9)
 );
+
+--Thêm các ràng buộc cho database
+alter table NhanVien
+add constraint Chk_CCCDNV_Length check (len(cast(CCCD as nvarchar(12)))=12);
+
+alter table KhachHang
+add constraint Chk_CCCDKH_Length check (len(cast(CCCD as nvarchar(12)))=12);
