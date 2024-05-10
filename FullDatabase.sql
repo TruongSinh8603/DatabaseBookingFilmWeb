@@ -82,7 +82,8 @@ create table Phim(
 create table PhongChieu(
 	MaPC int identity(1,1) primary key,
 	TenPC nvarchar(20),
-	SoLuongGhe int,
+	SoHangGhe int,
+	SoGheMoiHang int,
 	MaRC int,
 	foreign key (MaRC) references RapChieu(MaRC)
 );
@@ -91,13 +92,15 @@ create table LichChieu(
 	NgayChieu Date,
 	SuatChieu Time,
 	MaPhim int,
+	MaPC int,
 	foreign key (MaPhim) references Phim(MaPhim),
+	foreign key (MaPC) references PhongChieu(MaPC)
 );
 create table Ghe(
 	MaGhe int identity(1,1) primary key,
 	TenGhe nvarchar(4),
 	LoaiGhe nvarchar(10),
-	TinhTrangGhe nvarchar(10),
+	TinhTrangGhe Bit,
 	MaPC int,
 	foreign key (MaPC) references PhongChieu(MaPC)
 );
